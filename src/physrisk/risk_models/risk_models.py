@@ -271,13 +271,13 @@ class RealEstateToyRiskMeasures(RiskMeasureCalculator):
 
 
 class ThermalPowerPlantsRiskMeasures(RiskMeasureCalculator):
-    """Toy model for calculating risk measures for real estate assets."""
+    """Toy model for calculating risk measures for thermal power plant assets."""
 
     # https://www.ecb.europa.eu/stats/ecb_statistics/sustainability-indicators/data/shared/files/technical_annex202311.fr.pdf
 
     def __init__(self):
-        """Toy model for calculating risk measures for real estate assets."""
-        self.model_summary = {"Stress test risk measures for real assets."}
+        """Toy model for calculating risk measures for thermal power plant assets."""
+        self.model_summary = {"Stress test risk measures for thermal power plant assets."}
 
         definition_stress_test = self._definition_stress_test()
 
