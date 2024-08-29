@@ -28,6 +28,7 @@ class ZarrReader:
     __secret_key = "OSC_S3_SECRET_KEY"
     __S3_bucket = "OSC_S3_BUCKET"  # e.g. physrisk-hazard-indicators
     __zarr_path = "OSC_S3_HAZARD_PATH"  # hazard/hazard.zarr
+    __endpoint_url = "OSC_S3_ENDPOINT"
 
     def __init__(
         self,
@@ -68,10 +69,11 @@ class ZarrReader:
     ):
         access_key = get_env(cls.__access_key, "")
         secret_key = get_env(cls.__secret_key, "")
-        s3_bucket = get_env(cls.__S3_bucket, "physrisk-hazard-indicators")
+        s3_bucket = get_env(cls.__S3_bucket, "alpha-klima-hazard-indicators")
         zarr_path = get_env(cls.__zarr_path, "hazard/hazard.zarr")
+        endpoint_url = os.environ.get(cls.__endpoint_url, None)
 
-        s3 = s3fs.S3FileSystem(anon=False, key=access_key, secret=secret_key)
+        s3 = s3fs.S3FileSystem(anon=False, key=access_key, secret=secret_key, endpoint_url=endpoint_url)
 
         store = s3fs.S3Map(
             root=str(PurePosixPath(s3_bucket, zarr_path)),

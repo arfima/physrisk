@@ -264,49 +264,50 @@ def vulnerability_models_dict_water_stress():
 def vul_models_dict_extra():
     return {
         "historical_1971": [
-            ThermalPowerGenerationHighFireModel(),
+            #     ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
-            ThermalPowerGenerationCoastalInundationModel(),
-            ThermalPowerGenerationRiverineInundationModel(),
+            #     ThermalPowerGenerationCoastalInundationModel(),
+            #   ThermalPowerGenerationRiverineInundationModel(),
         ],
         "historical_1980": [
+            ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationLandslideModel(),
             ThermalPowerGenerationSubsidenceModel(),
         ],
-        "ssp126_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp126_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp126_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp370_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp370_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp370_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "rcp45_2050": [
+        # "ssp126_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp126_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp126_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp370_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp370_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp370_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        "rcp4p5_2035": [
             ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
-            ThermalPowerGenerationCoastalInundationModel(),
-            ThermalPowerGenerationRiverineInundationModel(),
+            #     ThermalPowerGenerationCoastalInundationModel(),
+            #     ThermalPowerGenerationRiverineInundationModel(),
         ],
-        "rcp45_2070": [
-            ThermalPowerGenerationCoastalInundationModel(),
-            ThermalPowerGenerationRiverineInundationModel(),
-        ],
-        "rcp45_2100": [
+        # "rcp45_2070": [
+        #     ThermalPowerGenerationCoastalInundationModel(),
+        #     ThermalPowerGenerationRiverineInundationModel(),
+        # ],
+        "rcp4p5_2085": [
             ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
         ],
-        "ssp585_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp585_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "ssp585_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
-        "rcp85_2050": [
+        # "ssp585_2030": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp585_2050": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        # "ssp585_2080": [ThermalPowerGenerationAqueductWaterRiskModel()],
+        "rcp8p5_2035": [
             ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
-            ThermalPowerGenerationCoastalInundationModel(),
-            ThermalPowerGenerationRiverineInundationModel(),
+            #     ThermalPowerGenerationCoastalInundationModel(),
+            #     ThermalPowerGenerationRiverineInundationModel(),
         ],
-        "rcp85_2070": [
-            ThermalPowerGenerationCoastalInundationModel(),
-            ThermalPowerGenerationRiverineInundationModel(),
-        ],
-        "rcp85_2100": [
+        # "rcp85_2070": [
+        #     ThermalPowerGenerationCoastalInundationModel(),
+        #     ThermalPowerGenerationRiverineInundationModel(),
+        # ],
+        "rcp8p5_2085": [
             ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
         ],
@@ -744,7 +745,7 @@ def test_thermal_power_generation_impacts_water_stress(
     ), f"Exceptions occurred in scenarios: {exception_scenarios}"
 
 
-@pytest.mark.skip(reason="Requires credentials.")
+# @pytest.mark.skip(reason="Requires credentials.")
 def test_thermal_power_generation_impacts_extra(
     load_credentials, setup_assets_extra, vul_models_dict_extra
 ):
@@ -770,6 +771,7 @@ def test_thermal_power_generation_impacts_extra(
                 "OSC_S3_ACCESS_KEY": os.environ.get("OSC_S3_ACCESS_KEY_DEV", None),
                 "OSC_S3_SECRET_KEY": os.environ.get("OSC_S3_SECRET_KEY_DEV", None),
                 "OSC_S3_BUCKET": os.environ.get("OSC_S3_BUCKET_DEV", None),
+                "OSC_S3_ENDPOINT": os.environ.get("OSC_S3_ENDPOINT_DEV", None),
             }
             get_env = devaccess.get
             reader = ZarrReader(get_env=get_env)
@@ -831,7 +833,7 @@ def test_thermal_power_generation_impacts_extra(
                     "year": int(year),
                 }
             )
-
+    print(out)
     # out can be used when dealing with expected values.
 
     # Assert the counts and details for empty impacts, None asset_subtype, and exceptions

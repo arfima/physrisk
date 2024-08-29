@@ -103,7 +103,7 @@ class WaterTemperature(ChronicHeat):
 
 
 class Wind(Hazard):
-    kind = HazardKind.ACUTE
+    kind = HazardKind.CHRONIC
     pass
 
 
