@@ -264,10 +264,10 @@ def vulnerability_models_dict_water_stress():
 def vul_models_dict_extra():
     return {
         "historical_1971": [
-            #     ThermalPowerGenerationHighFireModel(),
+            # ThermalPowerGenerationHighFireModel(),
             ThermalPowerGenerationSevereConvectiveWindstormModel(),
-            #     ThermalPowerGenerationCoastalInundationModel(),
-            #   ThermalPowerGenerationRiverineInundationModel(),
+            # ThermalPowerGenerationCoastalInundationModel(),
+            ThermalPowerGenerationRiverineInundationModel(),
         ],
         "historical_1980": [
             ThermalPowerGenerationHighFireModel(),
@@ -751,7 +751,6 @@ def test_thermal_power_generation_impacts_extra(
 ):
     """Calculate impacts for the vulnerability models from use case id STRESSTEST."""
     assets = setup_assets_extra
-
     out = []
     empty_impact_count = 0
     asset_subtype_none_count = 0

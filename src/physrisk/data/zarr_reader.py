@@ -71,9 +71,11 @@ class ZarrReader:
         secret_key = get_env(cls.__secret_key, "")
         s3_bucket = get_env(cls.__S3_bucket, "alpha-klima-hazard-indicators")
         zarr_path = get_env(cls.__zarr_path, "hazard/hazard.zarr")
-        endpoint_url = os.environ.get(cls.__endpoint_url, None)
+        endpoint_url = get_env(cls.__endpoint_url, None)
 
-        s3 = s3fs.S3FileSystem(anon=False, key=access_key, secret=secret_key, endpoint_url=endpoint_url)
+        s3 = s3fs.S3FileSystem(
+            anon=False, key=access_key, secret=secret_key, endpoint_url=endpoint_url
+        )
 
         store = s3fs.S3Map(
             root=str(PurePosixPath(s3_bucket, zarr_path)),
